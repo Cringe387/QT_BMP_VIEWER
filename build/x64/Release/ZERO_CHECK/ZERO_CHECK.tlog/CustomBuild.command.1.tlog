@@ -1,0 +1,10 @@
+^C:\QT_P\BUILD\CMAKEFILES\C4D3B28335974690C429BEAE8C20F569\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/QT_P -BC:/QT_P/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/QT_P/build/BMPViewer.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

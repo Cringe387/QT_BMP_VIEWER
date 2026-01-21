@@ -1,0 +1,3 @@
+C:/QT_P/build/CMakeFiles/BMPViewer.dir
+C:/QT_P/build/CMakeFiles/ALL_BUILD.dir
+C:/QT_P/build/CMakeFiles/ZERO_CHECK.dir
