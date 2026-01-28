@@ -19,6 +19,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+protected:
+    void contextMenuEvent(QContextMenuEvent *event) override;
+
 private slots:
     void openFile();
     void saveFile();
@@ -26,6 +29,7 @@ private slots:
     void exitApp();
     void convertToGrayscale();
     void showFileInfo();
+    void showImageInfo();
 
 private:
     void createMenus();
@@ -40,6 +44,7 @@ private:
     
     QMenu *fileMenu;
     QMenu *processMenu;
+    QMenu *contextMenu;
     
     QAction *openAction;
     QAction *saveAction;
@@ -47,9 +52,10 @@ private:
     QAction *exitAction;
     QAction *grayscaleAction;
     QAction *infoAction;
+    QAction *imageInfoAction;
     
     BMPProcessor bmpProcessor;
     std::string currentFileName;
 };
 
-#endif 
+#endif
