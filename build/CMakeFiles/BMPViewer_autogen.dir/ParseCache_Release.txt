@@ -15,7 +15,10 @@ C:/QT_P/mainwindow.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtCore/qconfig.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtCore/qcontainerfwd.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtCore/qcontainertools_impl.h
+ mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtCore/qcoreevent.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtCore/qdatastream.h
+ mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtCore/qfile.h
+ mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtCore/qfiledevice.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtCore/qflags.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtCore/qglobal.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtCore/qglobalstatic.h
@@ -43,6 +46,7 @@ C:/QT_P/mainwindow.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtCore/qrefcount.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtCore/qregexp.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtCore/qscopedpointer.h
+ mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtCore/qset.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtCore/qshareddata.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtCore/qsharedpointer.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtCore/qsharedpointer_impl.h
@@ -62,9 +66,11 @@ C:/QT_P/mainwindow.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtCore/qvarlengtharray.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtCore/qvector.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtCore/qversiontagging.h
+ mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtGui/QMouseEvent
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtGui/qbrush.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtGui/qcolor.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtGui/qcursor.h
+ mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtGui/qevent.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtGui/qfont.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtGui/qfontinfo.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtGui/qfontmetrics.h
@@ -87,7 +93,9 @@ C:/QT_P/mainwindow.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtGui/qtextoption.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtGui/qtgui-config.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtGui/qtguiglobal.h
+ mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtGui/qtouchdevice.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtGui/qtransform.h
+ mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtGui/qvector2d.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtGui/qwindowdefs.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtGui/qwindowdefs_win.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtWidgets/QAction
@@ -97,6 +105,7 @@ C:/QT_P/mainwindow.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtWidgets/QMenuBar
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtWidgets/QScrollArea
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtWidgets/QSplitter
+ mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtWidgets/QStatusBar
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtWidgets/QTextEdit
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtWidgets/qabstractscrollarea.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtWidgets/qaction.h
@@ -109,6 +118,7 @@ C:/QT_P/mainwindow.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtWidgets/qscrollarea.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtWidgets/qsizepolicy.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtWidgets/qsplitter.h
+ mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtWidgets/qstatusbar.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtWidgets/qtabwidget.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtWidgets/qtextedit.h
  mdp:C:/Users/Egor/.conan2/p/b/qtac63b13c3077a/p/include/QtWidgets/qtwidgets-config.h

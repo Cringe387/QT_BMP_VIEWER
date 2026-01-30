@@ -11,11 +11,28 @@
 #include <sstream>
 #include <iomanip>
 
+ImageLabel::ImageLabel(QWidget *parent) : QLabel(parent)
+{
+    setMouseTracking(true);
+}
+
+void ImageLabel::mouseMoveEvent(QMouseEvent *event)
+{
+    emit mouseMove(event->pos().x(), event->pos().y());
+    QLabel::mouseMoveEvent(event);
+}
+
+void ImageLabel::leaveEvent(QEvent *event)
+{
+    emit mouseLeave();
+    QLabel::leaveEvent(event);
+}
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     // Виджет для отображения изображения
-    imageLabel = new QLabel;
+    imageLabel = new ImageLabel;
     imageLabel->setBackgroundRole(QPalette::Base);
     imageLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
     imageLabel->setScaledContents(false);
@@ -40,6 +57,14 @@ MainWindow::MainWindow(QWidget *parent)
     splitter->setStretchFactor(1, 1);
     
     setCentralWidget(splitter);
+    
+    // Строка состояния
+    statusBar = new QStatusBar(this);
+    setStatusBar(statusBar);
+    statusBar->showMessage("Готов");
+    
+    connect(imageLabel, &ImageLabel::mouseMove, this, &MainWindow::updateStatusBar);
+    connect(imageLabel, &ImageLabel::mouseLeave, this, &MainWindow::clearStatusBar);
     
     // Меню
     createMenus();
@@ -113,7 +138,7 @@ void MainWindow::createMenus()
 
 void MainWindow::contextMenuEvent(QContextMenuEvent *event)
 {
-    // Показ контекстного меню (если изображение загружено)
+    // Показ контекстового меню (если изображение загружено)
     if (bmpProcessor.isLoaded()) {
         contextMenu->exec(event->globalPos());
     }
@@ -183,6 +208,7 @@ void MainWindow::closeFile()
     imageLabel->setText("Загрузите изображение через Файл -> Открыть");
     infoText->setText("Информация о файле появится здесь после загрузки");
     currentFileName.clear();
+    currentImage = QImage();
     
     saveAction->setEnabled(false);
     closeAction->setEnabled(false);
@@ -190,6 +216,7 @@ void MainWindow::closeFile()
     infoAction->setEnabled(false);
     
     setWindowTitle("BMP Viewer");
+    statusBar->showMessage("Готов");
 }
 
 void MainWindow::exitApp()
@@ -231,11 +258,10 @@ void MainWindow::showImageInfo()
     BMPHeaders headers = bmpProcessor.getHeaders();
     
     std::stringstream ss;
-    
-    ss << "                            Информация об изображении\n";
+    ss << "\t\t\tИнформация об изображении\n";
     
     // Основные параметры
-    ss << "Основные параметры изображения:\n";
+    ss << "Основные параметры:\n";
     ss << "  Ширина:              " << headers.infoHeader.width << " px\n";
     ss << "  Высота:              " << headers.absHeight << " px\n";
     ss << "  Ориентация:          " << (headers.bottomUp ? "Bottom-up (снизу вверх)" : "Top-down (сверху вниз)") << "\n";
@@ -326,11 +352,11 @@ void MainWindow::showImageInfo()
     ss << "  Смещение данных:     " << headers.fileHeader.dataOffset << " байт\n";
     ss << "  Размер заголовков:   " << headers.fileHeader.dataOffset << " байт\n";
     
-    // Создание кастомного диалога
+    // Кастомный диалог
     QDialog *dialog = new QDialog(this);
     dialog->setWindowTitle("Информация об изображении");
-    dialog->setMinimumSize(600, 500);
-    dialog->resize(700, 600);         
+    dialog->setMinimumSize(600, 500);  // Минимальный размер
+    dialog->resize(700, 600);          // Начальный размер
     
     QVBoxLayout *layout = new QVBoxLayout(dialog);
     
@@ -360,9 +386,8 @@ void MainWindow::displayImage()
     
     std::vector<char> data = bmpProcessor.getData();
     
-    QImage image;
-    if (image.loadFromData((const uchar*)data.data(), static_cast<int>(data.size()), "BMP")) {
-        QPixmap pixmap = QPixmap::fromImage(image);
+    if (currentImage.loadFromData((const uchar*)data.data(), static_cast<int>(data.size()), "BMP")) {
+        QPixmap pixmap = QPixmap::fromImage(currentImage);
         imageLabel->setPixmap(pixmap);
         imageLabel->resize(pixmap.size());
     } else {
@@ -392,4 +417,51 @@ void MainWindow::updateInfo()
     
     std::string info = bmpProcessor.getInfo();
     infoText->setText(QString::fromStdString(info));
+}
+
+QRgb MainWindow::getPixelColor(int x, int y)
+{
+    if (currentImage.isNull() || x < 0 || y < 0 || 
+        x >= currentImage.width() || y >= currentImage.height()) {
+        return qRgb(0, 0, 0);
+    }
+    return currentImage.pixel(x, y);
+}
+
+void MainWindow::updateStatusBar(int x, int y)
+{
+    if (!bmpProcessor.isLoaded() || currentImage.isNull()) {
+        statusBar->showMessage("Готов");
+        return;
+    }
+    
+    if (x >= 0 && y >= 0 && x < currentImage.width() && y < currentImage.height()) {
+        QRgb pixel = getPixelColor(x, y);
+        int r = qRed(pixel);
+        int g = qGreen(pixel);
+        int b = qBlue(pixel);
+        
+        QString message = QString("X: %1, Y: %2  |  RGB: (%3, %4, %5)  |  Hex: #%6%7%8")
+            .arg(x, 4)
+            .arg(y, 4)
+            .arg(r, 3)
+            .arg(g, 3)
+            .arg(b, 3)
+            .arg(r, 2, 16, QChar('0'))
+            .arg(g, 2, 16, QChar('0'))
+            .arg(b, 2, 16, QChar('0'));
+        
+        statusBar->showMessage(message);
+    } else {
+        statusBar->showMessage("Вне изображения");
+    }
+}
+
+void MainWindow::clearStatusBar()
+{
+    if (bmpProcessor.isLoaded()) {
+        statusBar->showMessage("Готов");
+    } else {
+        statusBar->showMessage("Готов");
+    }
 }
